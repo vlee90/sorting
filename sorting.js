@@ -24,7 +24,7 @@ function order(array, low, high) {
     if (low <= high) {
       exchange(array, low, high);
       low++;
-      high++;
+      high--;
     }
   }
   return low;
@@ -45,6 +45,6 @@ function quickSort(array, low, high) {
 }
 
 var output = quickSort(arrayStart, 0, arrayStart.length - 1);
-$.each(output, function(i, val) {
-  $("#arrayID").text(val + ",");
-});
+// $.each(output, function(i, val) {
+//   $("#arrayID").text(val + ",");
+// });
