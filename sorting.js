@@ -22,26 +22,28 @@ function order(array, low, high) {
   }
   return low;
 }
+function visualUpdate(array) {
+  $("#arrayID").empty();
+  $.each(array, function(i, num) {
+    $("#arrayID")
+    .append("<div class='red' style='width:" + num + "px;'>" + num + "</div>")
+  });
+}
 function quickSort(array, low, high) {
   var index;
   if (array.length > 1) {
     index = order(array, low, high);
+  setTimeout(visualUpdate(array),10);
     if (low < index - 1) {
-      setTimeout(quickSort(array, low, index - 1), 5000);
+      quickSort(array, low, index - 1);
     }
     if (index < high) {
-      setTimeout(quickSort(array, index, high), 5000);
+      quickSort(array, index, high);
     }
       console.log(arrayStart);
-    $("#arrayID").empty();
-    $.each(array, function(i, num) {
-      $("#arrayID")
-      .append("<div class='red' style='width:" + num*10 + "px;'>" + num + "</div>")
-    });
   }
   return array;
 }
-
 
 var arrayStart = new Array(30);
 
@@ -50,9 +52,6 @@ for(i = 0; i < arrayStart.length; i++) {
   arrayStart [i] = Math.floor(Math.random() * 150) + 1;
 }
 console.log(arrayStart);
-$("#arrayID").empty();
-$.each(arrayStart, function(i, num) {
-  $("#arrayID")
-  .append("<div class='red' style='width:" + num + "px;'>" + num + "</div>")
-});
+visualUpdate(arrayStart);
+
 var output = quickSort(arrayStart, 0, arrayStart.length - 1);
